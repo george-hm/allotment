@@ -9,16 +9,16 @@ class Allotment extends EventEmitter {
 
     private timeToCalculateFrom: number|null;
 
-    private constructor() {
+    constructor(active?: boolean) {
         super();
         this.storedTime = Date.now();
         this.lastRecordedTime = 0;
-        this.active = true;
+        this.active = active || false;
         this.timeToCalculateFrom = null;
     }
 
     public static start(): Allotment {
-        return new Allotment();
+        return new Allotment(true);
     }
 
     public start(): true {
