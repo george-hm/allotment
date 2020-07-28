@@ -9,6 +9,16 @@ class Allotment extends EventEmitter {
 
     private timeToCalculateFrom: number|null = null;
 
+    private emitStart = 'start';
+
+    private laps: {[key in string|number]: number}[] = [];
+
+    private lapCount = 0;
+
+    private splits: {[key in string|number]: number}[] = [];
+
+    private splitCount = 0;
+
     constructor(active?: boolean) {
         super();
         this.storedTime = Date.now();
@@ -25,6 +35,7 @@ class Allotment extends EventEmitter {
 
     public start(): true {
         this.active = true;
+        this.emit(this.emitStart);
         return true;
     }
 
