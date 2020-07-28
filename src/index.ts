@@ -42,4 +42,4 @@ class Allotment extends EventEmitter {
     }
 }
 
-export default Allotment.start;
+export default Allotment;
