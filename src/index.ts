@@ -1,4 +1,6 @@
-class Allotment {
+import { EventEmitter } from 'events';
+
+class Allotment extends EventEmitter {
     private storedTime: number;
 
     private active: boolean;
@@ -8,6 +10,7 @@ class Allotment {
     private timeToCalculateFrom: number|null;
 
     private constructor() {
+        super();
         this.storedTime = Date.now();
         this.lastRecordedTime = 0;
         this.active = true;
@@ -26,6 +29,7 @@ class Allotment {
     public stop() {
         this.active = false;
         this.lastRecordedTime = this.time;
+        this.emit('stop');
         return true;
     }
 
