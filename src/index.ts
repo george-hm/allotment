@@ -5,16 +5,18 @@ class Allotment extends EventEmitter {
 
     private active: boolean;
 
-    private lastRecordedTime: number;
+    private lastRecordedTime = 0;
 
-    private timeToCalculateFrom: number|null;
+    private timeToCalculateFrom: number|null = null;
 
     constructor(active?: boolean) {
         super();
         this.storedTime = Date.now();
         this.lastRecordedTime = 0;
         this.active = active || false;
-        this.timeToCalculateFrom = null;
+        if (this.active) {
+            this.emit(this.emitStart);
+        }
     }
 
     public static start(): Allotment {
