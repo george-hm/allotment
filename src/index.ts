@@ -27,8 +27,8 @@ class Allotment extends EventEmitter {
     }
 
     public stop(): true {
-        this.active = false;
         this.lastRecordedTime = this.time;
+        this.active = false;
         this.emit('stop');
         return true;
     }
