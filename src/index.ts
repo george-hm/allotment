@@ -17,23 +17,23 @@ class Allotment extends EventEmitter {
         this.timeToCalculateFrom = null;
     }
 
-    public static start() {
+    public static start(): Allotment {
         return new Allotment();
     }
 
-    public start() {
+    public start(): true {
         this.active = true;
         return true;
     }
 
-    public stop() {
+    public stop(): true {
         this.active = false;
         this.lastRecordedTime = this.time;
         this.emit('stop');
         return true;
     }
 
-    public get time() {
+    public get time(): number {
         if (!this.active) {
             return this.lastRecordedTime;
         }
