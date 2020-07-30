@@ -34,6 +34,9 @@ class Allotment extends EventEmitter {
     }
 
     public start(): true {
+        if (this.active) {
+            return true;
+        }
         this.active = true;
         this.emit(this.emitStart);
         return true;
