@@ -25,7 +25,7 @@ class Allotment extends EventEmitter {
         this.storedTime = Date.now();
         this.active = active || false;
         if (this.active) {
-            this.emit(this.emitStart);
+            this.start();
         }
     }
 
