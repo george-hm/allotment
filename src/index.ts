@@ -46,4 +46,8 @@ class Allotment extends EventEmitter {
     }
 }
 
+module.exports = Allotment;
 export default Allotment;
+export {
+    start,
+};
