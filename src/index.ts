@@ -63,6 +63,28 @@ class Allotment extends EventEmitter {
         return (timeNow - this.storedSplitTime) + this.lastRecordedSplitTime;
     }
 
+    public split(splitName?: string): null|SplitStructure {
+        // timer is not active we cant split
+        if (!this.active) {
+            return null;
+        }
+        const currentSplitTime = this.splitTime;
+        const splitMade: SplitStructure = {
+            name: splitName || null,
+            splitNumber: (this.storedSplits.length + 1),
+            time: currentSplitTime,
+        };
+        this.storedSplits.push(splitMade);
+
+        // reset times for current split
+        this.storedSplitTime = 0;
+        this.lastRecordedSplitTime = 0;
+
+        this.emit('split', splitMade);
+
+        // return the split we just pushed
+        return splitMade;
+    }
 }
 
 module.exports = Allotment;
