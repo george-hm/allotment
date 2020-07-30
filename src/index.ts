@@ -52,6 +52,16 @@ class Allotment extends EventEmitter {
         const timeNow: number = this.timeToCalculateFrom || Date.now();
         return (timeNow - this.storedTime) + this.lastRecordedTime;
     }
+
+    public get splitTime(): number {
+        if (!this.active) {
+            return this.lastRecordedSplitTime;
+        }
+
+        const timeNow: number = this.timeToCalculateSplitFrom || Date.now();
+        return (timeNow - this.storedSplitTime) + this.lastRecordedSplitTime;
+    }
+
 }
 
 module.exports = Allotment;
