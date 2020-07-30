@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import { SplitStructure } from './interfaces/splits';
 
 class Allotment extends EventEmitter {
     private storedTime = 0;
