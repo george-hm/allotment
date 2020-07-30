@@ -2,23 +2,23 @@ import { EventEmitter } from 'events';
 import { SplitStructure } from './interfaces/splits';
 
 class Allotment extends EventEmitter {
-    private storedTime = 0;
-
-    private storedSplitTime = 0;
-
     private active: boolean;
+
+    private emitStart = 'start';
+
+    private lastRecordedSplitTime = 0;
 
     private lastRecordedTime = 0;
 
-    private lastRecordedSplitTime = 0;
+    private storedSplits: SplitStructure[] = [];
+
+    private storedSplitTime = 0;
+
+    private storedTime = 0;
 
     private timeToCalculateFrom: number|null = null;
 
     private timeToCalculateSplitFrom: number|null = null;
-
-    private emitStart = 'start';
-
-    private storedSplits: SplitStructure[] = [];
 
     constructor(active?: boolean) {
         super();
