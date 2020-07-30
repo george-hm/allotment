@@ -3,13 +3,21 @@ import { EventEmitter } from 'events';
 class Allotment extends EventEmitter {
     private storedTime = 0;
 
+    private storedSplitTime = 0;
+
     private active: boolean;
 
     private lastRecordedTime = 0;
 
+    private lastRecordedSplitTime = 0;
+
     private timeToCalculateFrom: number|null = null;
 
+    private timeToCalculateSplitFrom: number|null = null;
+
     private emitStart = 'start';
+
+    private storedSplits: SplitStructure[] = [];
 
     constructor(active?: boolean) {
         super();
