@@ -5,7 +5,7 @@ describe('Allotment', () => {
         it('should return instance on new', () => {
             expect(new Allotment()).toBeInstanceOf(Allotment);
         });
-        it('should not be counting', () => {
+        it('should not be counting when passed nothing', () => {
             const timer = new Allotment();
             expect(timer.time).toEqual(0);
             const timeNow = Date.now();
@@ -17,6 +17,32 @@ describe('Allotment', () => {
 
             // expect time to still be 0 after time passes
             expect(timer.time).toEqual(0);
+        });
+        it('should not be counting when passed false', () => {
+            const timer = new Allotment(false);
+            expect(timer.time).toEqual(0);
+            const timeNow = Date.now();
+
+            // probably better way to do this by mocking or something
+            while ((Date.now() - timeNow) < 10) {
+                // wait for time to pass
+            }
+
+            // expect time to still be 0 after time passes
+            expect(timer.time).toEqual(0);
+        });
+        it('should be counting when passed true', () => {
+            const timer = new Allotment(true);
+            expect(timer.time).toEqual(0);
+            const timeNow = Date.now();
+
+            // probably better way to do this by mocking or something
+            while ((Date.now() - timeNow) < 10) {
+                // wait for time to pass
+            }
+
+            // expect time to still be 0 after time passes
+            expect(timer.time >= 10).toBe(true);
         });
     });
     describe('static start', () => {
@@ -33,6 +59,30 @@ describe('Allotment', () => {
             }
 
             expect(timer.time !== 0).toBe(true);
+        });
+    });
+    describe('start', () => {
+        it('should start the timer', () => {
+            const timer = new Allotment(false);
+            expect(timer.time).toEqual(0);
+            let timeNow = Date.now();
+
+            // make sure its not started yet
+            while ((Date.now() - timeNow) < 10) {
+                // wait for time to pass
+            }
+
+            expect(timer.time).toEqual(0);
+
+            timer.start();
+            timeNow = Date.now();
+
+            // probably better way to do this by mocking or something
+            while ((Date.now() - timeNow) < 10) {
+                // wait for time to pass
+            }
+
+            expect(timer.time >= 10).toBe(true);
         });
     });
     describe('time getter', () => {
