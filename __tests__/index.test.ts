@@ -84,6 +84,19 @@ describe('Allotment', () => {
 
             expect(timer.time >= 10).toBe(true);
         });
+        it('should emit a start event', () => {
+            // stuff that handles emits should probably be mocked in the future
+            const timer = new Allotment(false);
+
+            let emitTriggered = false;
+            timer.on('start', () => {
+                emitTriggered = true;
+            });
+
+            timer.start();
+
+            expect(emitTriggered).toBe(true);
+        });
     });
     describe('time getter', () => {
         it('should return a number', () => {
